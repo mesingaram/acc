@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:local_auth/local_auth.dart';
 import 'background_painter.dart';
 import 'home.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Auth extends StatefulWidget {
   @override
@@ -43,10 +44,10 @@ class _AuthState extends State<Auth> {
               margin: EdgeInsets.symmetric(horizontal: 20),
               width: 175,
               child: Text(
-                'Welcome to My App',
-                style: TextStyle(
+                'My App',
+                style: GoogleFonts.ubuntu(
                     color: Colors.white,
-                    fontSize: 30,
+                    fontSize: 32,
                     fontWeight: FontWeight.bold),
               ),
             ),
@@ -58,8 +59,9 @@ class _AuthState extends State<Auth> {
               iconSize: 70),
           SizedBox(height: 12),
           Text(
-            'Login to continue',
-            style: TextStyle(fontSize: 16),
+            'Verify fingerprint to continue',
+            style:
+                GoogleFonts.ubuntu(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           Spacer(),
         ],
