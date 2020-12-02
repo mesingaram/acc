@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:local_auth/local_auth.dart';
+import 'background_painter.dart';
 import 'home.dart';
 
 class Auth extends StatefulWidget {
@@ -23,29 +24,44 @@ class _AuthState extends State<Auth> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      //appBar: AppBar(
-      //title: Text("Flutter Biometric"),),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            IconButton(
-              icon: Icon(
-                Icons.fingerprint,
-                size: 50,
+  Widget build(BuildContext context) => Stack(
+        fit: StackFit.expand,
+        children: [
+          CustomPaint(painter: BackgroundPainter()),
+          buildSignUp(),
+        ],
+      );
+
+  Widget buildSignUp() => Column(
+        children: [
+          Spacer(),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 20),
+              width: 175,
+              child: Text(
+                'Welcome to My App',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold),
               ),
-              onPressed: _startAuth,
-              iconSize: 60,
             ),
-            SizedBox(height: 15),
-            Text('Verify with fingerprint')
-          ],
-        ),
-      ),
-    );
-  }
+          ),
+          Spacer(),
+          IconButton(
+              icon: Icon(Icons.fingerprint, size: 50),
+              onPressed: _startAuth,
+              iconSize: 60),
+          SizedBox(height: 12),
+          Text(
+            'Login to continue',
+            style: TextStyle(fontSize: 16),
+          ),
+          Spacer(),
+        ],
+      );
 
   void _checkBiometrics() async {
     try {
