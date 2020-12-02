@@ -24,12 +24,14 @@ class _AuthState extends State<Auth> {
   }
 
   @override
-  Widget build(BuildContext context) => Stack(
-        fit: StackFit.expand,
-        children: [
-          CustomPaint(painter: BackgroundPainter()),
-          buildSignUp(),
-        ],
+  Widget build(BuildContext context) => Scaffold(
+        body: Stack(
+          fit: StackFit.expand,
+          children: [
+            CustomPaint(painter: BackgroundPainter()),
+            buildSignUp(),
+          ],
+        ),
       );
 
   Widget buildSignUp() => Column(
@@ -51,9 +53,9 @@ class _AuthState extends State<Auth> {
           ),
           Spacer(),
           IconButton(
-              icon: Icon(Icons.fingerprint, size: 50),
+              icon: Icon(Icons.fingerprint, size: 70),
               onPressed: _startAuth,
-              iconSize: 60),
+              iconSize: 70),
           SizedBox(height: 12),
           Text(
             'Login to continue',
