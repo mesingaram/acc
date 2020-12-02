@@ -12,7 +12,7 @@ class Home extends StatelessWidget {
             icon: Icon(Icons.exit_to_app),
             onPressed: () {
               Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (c) => Auth()));
+                  context, MaterialPageRoute(builder: (ctx) => Auth()));
             },
           )
         ],
