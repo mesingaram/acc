@@ -1,8 +1,7 @@
-import 'package:acc/screens/add_customer.dart';
 import 'package:flutter/material.dart';
-import 'auth.dart';
+import '../auth.dart';
 
-class Home extends StatelessWidget {
+class AddCust extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,14 +18,7 @@ class Home extends StatelessWidget {
         ],
       ),
       body: Center(
-        child: Text('Welcome'),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.person_add),
-        onPressed: () {
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => AddCust()));
-        },
+        child: Text('Add customer page'),
       ),
     );
   }
