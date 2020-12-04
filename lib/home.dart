@@ -1,5 +1,6 @@
 import 'package:acc/screens/add_customer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'auth.dart';
 
@@ -96,12 +97,30 @@ class Home extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.person_add),
-        onPressed: () {
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => AddCust()));
-        },
+      floatingActionButton: SpeedDial(
+        //animatedIcon: AnimatedIcons.menu_close,
+        child: Icon(Icons.people),
+        curve: Curves.ease,
+        children: [
+          SpeedDialChild(
+              child: Icon(Icons.delete),
+              backgroundColor: Colors.red,
+              label: "Delete customer",
+              onTap: () => Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (context) => AddCust()))),
+          SpeedDialChild(
+              child: Icon(Icons.add),
+              backgroundColor: Colors.indigo,
+              label: "Add new customer",
+              onTap: () => Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (context) => AddCust()))),
+          SpeedDialChild(
+              child: Icon(Icons.edit),
+              backgroundColor: Colors.purple,
+              label: "Modify customer",
+              onTap: () => Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (context) => AddCust())))
+        ],
       ),
     );
   }
