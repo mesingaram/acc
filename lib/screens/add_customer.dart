@@ -6,15 +6,13 @@ class AddCust extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (context) => Home()));
-            },
-          )
-        ],
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pushReplacement(
+                context, MaterialPageRoute(builder: (context) => Home()));
+          },
+        ),
         title: Text("Add new Customer"),
       ),
       body: Center(

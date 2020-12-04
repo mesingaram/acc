@@ -1,5 +1,6 @@
 import 'package:acc/screens/add_customer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'auth.dart';
@@ -20,68 +21,52 @@ class Home extends StatelessWidget {
           )
         ],
       ),
-      body: Center(
-        child: Column(
-          children: [
-            Spacer(),
-            Spacer(),
-            Padding(
-              padding: EdgeInsets.all(20.0),
-              child: OutlineButton.icon(
-                shape: StadiumBorder(),
-                onPressed: () {},
-                icon: Icon(Icons.search),
-                label: Text(
-                  'View Customer Details',
-                  style: GoogleFonts.ubuntu(
-                      fontWeight: FontWeight.bold, fontSize: 20),
+      body: AnnotatedRegion<SystemUiOverlayStyle>(
+          value: SystemUiOverlayStyle.light,
+          child: GestureDetector(
+            onTap: () => FocusScope.of(context).unfocus(),
+            child: Stack(
+              children: [
+                Container(
+                  height: double.infinity,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Color(0xFF73AEF5),
+                        Color(0xFF61A4F1),
+                        Color(0xFF478DE0),
+                        Color(0xFF398AE5),
+                      ],
+                      stops: [0.1, 0.4, 0.7, 0.9],
+                    ),
+                  ),
                 ),
-                //highlightedBorderColor: Colors.black,
-                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                borderSide: BorderSide(color: Colors.black),
-              ),
+                Center(
+                  child: Container(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        _buildDetailBtn("Detail"),
+                        _buildDetailBtn("Line"),
+                        _buildDetailBtn("Bill")
+                      ],
+                    ),
+                  ),
+                )
+              ],
             ),
-            Spacer(),
-            Padding(
-              padding: EdgeInsets.all(20.0),
-              child: OutlineButton.icon(
-                shape: StadiumBorder(),
-                onPressed: () {},
-                icon: Icon(Icons.search),
-                label: Text(
-                  'Button 2',
-                  style: GoogleFonts.ubuntu(
-                      fontWeight: FontWeight.bold, fontSize: 20),
-                ),
-                //highlightedBorderColor: Colors.black,
-                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                borderSide: BorderSide(color: Colors.black),
-              ),
-            ),
-            Spacer(),
-            Padding(
-              padding: EdgeInsets.all(20.0),
-              child: OutlineButton.icon(
-                shape: StadiumBorder(),
-                onPressed: () {},
-                icon: Icon(Icons.search),
-                label: Text(
-                  'Button 3',
-                  style: GoogleFonts.ubuntu(
-                      fontWeight: FontWeight.bold, fontSize: 20),
-                ),
-                //highlightedBorderColor: Colors.black,
-                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                borderSide: BorderSide(color: Colors.black),
-              ),
-            ),
-            Spacer()
-          ],
-        ),
-      ),
+          )),
       floatingActionButton: SpeedDial(
+        backgroundColor: Colors.white,
         //animatedIcon: AnimatedIcons.menu_close,
-        child: Icon(Icons.people),
+        child: Icon(
+          Icons.people,
+          color: Colors.blue,
+        ),
         curve: Curves.ease,
         children: [
           SpeedDialChild(
@@ -106,4 +91,40 @@ class Home extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget _buildDetailBtn(String text) {
+  return GestureDetector(
+    onTap: () {},
+    child: Container(
+      height: 80.0,
+      width: 80.0,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black26,
+            offset: Offset(0, 2),
+            blurRadius: 6.0,
+          ),
+        ],
+      ),
+      child: Container(
+        child: Column(children: [
+          IconButton(
+            icon: Icon(
+              Icons.dialpad,
+              color: Colors.blue,
+            ),
+          ),
+          Text(
+            "${text}",
+            style: TextStyle(
+                color: Colors.blue, fontSize: 10, fontWeight: FontWeight.bold),
+          )
+        ]),
+      ),
+    ),
+  );
 }
