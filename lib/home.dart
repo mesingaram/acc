@@ -1,5 +1,6 @@
 import 'package:acc/screens/add_customer.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'auth.dart';
 
 class Home extends StatelessWidget {
@@ -19,7 +20,81 @@ class Home extends StatelessWidget {
         ],
       ),
       body: Center(
-        child: Text('Welcome'),
+        child: Column(
+          children: [
+            Spacer(),
+            Spacer(),
+            Padding(
+              padding: EdgeInsets.all(20.0),
+              child: OutlineButton.icon(
+                shape: StadiumBorder(),
+                onPressed: () {},
+                icon: Icon(Icons.search),
+                label: Text(
+                  'View Customer Details',
+                  style: GoogleFonts.ubuntu(
+                      fontWeight: FontWeight.bold, fontSize: 20),
+                ),
+                //highlightedBorderColor: Colors.black,
+                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                borderSide: BorderSide(color: Colors.black),
+              ),
+            ),
+            Spacer(),
+            Padding(
+              padding: EdgeInsets.all(20.0),
+              child: OutlineButton.icon(
+                shape: StadiumBorder(),
+                onPressed: () {},
+                icon: Icon(Icons.search),
+                label: Text(
+                  'Button 2',
+                  style: GoogleFonts.ubuntu(
+                      fontWeight: FontWeight.bold, fontSize: 20),
+                ),
+                //highlightedBorderColor: Colors.black,
+                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                borderSide: BorderSide(color: Colors.black),
+              ),
+            ),
+            Spacer(),
+            Padding(
+              padding: EdgeInsets.all(20.0),
+              child: OutlineButton.icon(
+                shape: StadiumBorder(),
+                onPressed: () {},
+                icon: Icon(Icons.search),
+                label: Text(
+                  'Button 3',
+                  style: GoogleFonts.ubuntu(
+                      fontWeight: FontWeight.bold, fontSize: 20),
+                ),
+                //highlightedBorderColor: Colors.black,
+                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                borderSide: BorderSide(color: Colors.black),
+              ),
+            ),
+            Spacer(),
+            Padding(
+              padding: EdgeInsets.all(20.0),
+              child: OutlineButton.icon(
+                shape: StadiumBorder(),
+                onPressed: () {},
+                icon: Icon(Icons.search),
+                label: Text(
+                  'Button 4',
+                  style: GoogleFonts.ubuntu(
+                      fontWeight: FontWeight.bold, fontSize: 20),
+                ),
+                //highlightedBorderColor: Colors.black,
+                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                borderSide: BorderSide(color: Colors.black),
+              ),
+            ),
+            Spacer(),
+            Spacer(),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.person_add),
