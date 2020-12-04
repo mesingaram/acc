@@ -75,25 +75,7 @@ class Home extends StatelessWidget {
                 borderSide: BorderSide(color: Colors.black),
               ),
             ),
-            Spacer(),
-            Padding(
-              padding: EdgeInsets.all(20.0),
-              child: OutlineButton.icon(
-                shape: StadiumBorder(),
-                onPressed: () {},
-                icon: Icon(Icons.search),
-                label: Text(
-                  'Button 4',
-                  style: GoogleFonts.ubuntu(
-                      fontWeight: FontWeight.bold, fontSize: 20),
-                ),
-                //highlightedBorderColor: Colors.black,
-                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                borderSide: BorderSide(color: Colors.black),
-              ),
-            ),
-            Spacer(),
-            Spacer(),
+            Spacer()
           ],
         ),
       ),
