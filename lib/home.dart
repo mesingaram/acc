@@ -1,4 +1,6 @@
 import 'package:acc/screens/add_customer.dart';
+import 'package:acc/screens/delete_customer.dart';
+import 'package:acc/screens/edit_customer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -10,7 +12,8 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home"),
+        centerTitle: true,
+        title: Text("Home", style: GoogleFonts.ubuntu()),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.exit_to_app),
@@ -70,13 +73,13 @@ class Home extends StatelessWidget {
         curve: Curves.ease,
         children: [
           SpeedDialChild(
-              child: Icon(Icons.delete),
+              child: Icon(Icons.person_remove),
               backgroundColor: Colors.red,
               label: "Delete customer",
-              onTap: () => Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (context) => AddCust()))),
+              onTap: () => Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => DeleteCust()))),
           SpeedDialChild(
-              child: Icon(Icons.add),
+              child: Icon(Icons.person_add),
               backgroundColor: Colors.indigo,
               label: "Add new customer",
               onTap: () => Navigator.pushReplacement(
@@ -86,7 +89,7 @@ class Home extends StatelessWidget {
               backgroundColor: Colors.purple,
               label: "Modify customer",
               onTap: () => Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (context) => AddCust())))
+                  context, MaterialPageRoute(builder: (context) => EditCust())))
         ],
       ),
     );
@@ -113,14 +116,15 @@ Widget _buildDetailBtn(String text) {
       child: Container(
         child: Column(children: [
           IconButton(
+            onPressed: () {},
             icon: Icon(
-              Icons.dialpad,
+              Icons.person_search,
               color: Colors.blue,
             ),
           ),
           Text(
-            "${text}",
-            style: TextStyle(
+            "$text",
+            style: GoogleFonts.ubuntu(
                 color: Colors.blue, fontSize: 10, fontWeight: FontWeight.bold),
           )
         ]),
