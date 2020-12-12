@@ -73,7 +73,7 @@ class Home extends StatelessWidget {
         curve: Curves.ease,
         children: [
           SpeedDialChild(
-              child: Icon(Icons.person_remove),
+              child: Icon(Icons.remove_circle_outline),
               backgroundColor: Colors.red,
               label: "Delete customer",
               onTap: () => Navigator.pushReplacement(context,
@@ -118,7 +118,7 @@ Widget _buildDetailBtn(String text) {
           IconButton(
             onPressed: () {},
             icon: Icon(
-              Icons.person_search,
+              Icons.search,
               color: Colors.blue,
             ),
           ),
