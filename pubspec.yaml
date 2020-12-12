@@ -28,6 +28,8 @@ dependencies:
 
   firebase_database: 
 
+  grouped_buttons:
+
   google_fonts:
 
   flutter_speed_dial:

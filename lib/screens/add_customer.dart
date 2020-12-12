@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../home.dart';
+import 'package:grouped_buttons/grouped_buttons.dart';
 
 class AddCust extends StatelessWidget {
   @override
@@ -34,14 +35,48 @@ class AddCust extends StatelessWidget {
             const Divider(
               height: 1.0,
             ),
-            new ListTile(
-              leading: const Icon(Icons.today),
-              title: const Text('Birthday'),
-              subtitle: const Text('February 20, 1980'),
-              trailing: const Icon(
-                Icons.check_circle,
-                color: Colors.green,
+            Container(
+              padding: const EdgeInsets.only(left: 14.0, top: 14.0),
+              child: Text(
+                "Select Papers:",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
               ),
+            ),
+            CheckboxGroup(
+              margin: const EdgeInsets.fromLTRB(120, 10, 20, 10),
+              labels: <String>[
+                'Dinamalar',
+                'Dinakaran',
+                'Hindu Tamil',
+                'Dinamalar MDU',
+                'The Hindu',
+                'Business Line'
+              ],
+              onChange: (bool isChecked, String label, int index) =>
+                  print("isChecked: $isChecked   label: $label  index: $index"),
+              onSelected: (List<String> checked) =>
+                  print("checked: ${checked.toString()}"),
+            ),
+            //BASIC RADIOBUTTONGROUP
+            Container(
+              padding: const EdgeInsets.only(left: 14.0, top: 14.0),
+              child: Text(
+                "Basic RadioButtonGroup",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+              ),
+            ),
+
+            RadioButtonGroup(
+              labels: [
+                "Option 1",
+                "Option 2",
+                "Option 3",
+                "Option 4",
+                "Option 5",
+              ],
+              onChange: (String label, int index) =>
+                  print("label: $label index: $index"),
+              onSelected: (String label) => print(label),
             ),
           ],
         ));
