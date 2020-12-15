@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../home.dart';
 import 'package:grouped_buttons/grouped_buttons.dart';
+import 'package:dropdown_formfield/dropdown_formfield.dart';
 
 class AddCust extends StatefulWidget {
   @override
@@ -9,6 +10,25 @@ class AddCust extends StatefulWidget {
 
 class _AddCustState extends State<AddCust> {
   final _formkey = GlobalKey<FormState>();
+  String _myActivity;
+  String _myActivityResult;
+
+  @override
+  void initState() {
+    super.initState();
+    _myActivity = '';
+    _myActivityResult = '';
+  }
+
+  _saveForm() {
+    var form = _formkey.currentState;
+    if (form.validate()) {
+      form.save();
+      setState(() {
+        _myActivityResult = _myActivity;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +52,7 @@ class _AddCustState extends State<AddCust> {
                   new ListTile(
                     leading: const Icon(Icons.person),
                     title: new TextFormField(
-                      decoration:
-                          new InputDecoration(hintText: "Enter Your Name"),
+                      decoration: new InputDecoration(hintText: "Name"),
                       validator: (value) {
                         if (value.isEmpty) {
                           return "Please Enter Your Name";
@@ -45,8 +64,9 @@ class _AddCustState extends State<AddCust> {
                   new ListTile(
                     leading: const Icon(Icons.phone),
                     title: new TextFormField(
+                      keyboardType: TextInputType.number,
                       decoration: new InputDecoration(
-                        hintText: "Enter Your Phone",
+                        hintText: "Phone",
                       ),
                       validator: (value) {
                         if (value.isEmpty) {
@@ -56,7 +76,48 @@ class _AddCustState extends State<AddCust> {
                       },
                     ),
                   ),
-
+                  Container(
+                    padding: EdgeInsets.all(16),
+                    child: DropDownFormField(
+                      titleText: 'Line',
+                      hintText: 'Select Line',
+                      value: _myActivity,
+                      onSaved: (value) {
+                        setState(() {
+                          _myActivity = value;
+                        });
+                      },
+                      onChanged: (value) {
+                        setState(() {
+                          _myActivity = value;
+                        });
+                      },
+                      dataSource: [
+                        {
+                          "display": "Bus Stand",
+                          "value": "Bus Stand",
+                        },
+                        {
+                          "display": "Housing Board",
+                          "value": "Housing Board",
+                        },
+                        {
+                          "display": "Pudupatti",
+                          "value": "Pudupatti",
+                        },
+                        {
+                          "display": "Santhai",
+                          "value": "Santhai",
+                        },
+                        {
+                          "display": "Valayapatti",
+                          "value": "Valayapatti",
+                        },
+                      ],
+                      textField: 'display',
+                      valueField: 'value',
+                    ),
+                  ),
                   Container(
                     padding: const EdgeInsets.only(left: 14.0, top: 14.0),
                     child: Text(
@@ -80,29 +141,6 @@ class _AddCustState extends State<AddCust> {
                     onSelected: (List<String> checked) =>
                         print("checked: ${checked.toString()}"),
                   ),
-                  //BASIC RADIOBUTTONGROUP
-                  Container(
-                    padding: const EdgeInsets.only(left: 14.0, top: 14.0),
-                    child: Text(
-                      "Basic RadioButtonGroup",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 20.0),
-                    ),
-                  ),
-
-                  RadioButtonGroup(
-                    margin: const EdgeInsets.fromLTRB(120, 10, 20, 10),
-                    labels: [
-                      "Option 1",
-                      "Option 2",
-                      "Option 3",
-                      "Option 4",
-                      "Option 5",
-                    ],
-                    onChange: (String label, int index) =>
-                        print("label: $label index: $index"),
-                    onSelected: (String label) => print(label),
-                  ),
                   ClipOval(
                     child: Material(
                       color: Colors.blue, // button color
@@ -110,10 +148,12 @@ class _AddCustState extends State<AddCust> {
                         splashColor: Colors.red, // inkwell color
                         child: SizedBox(
                             width: 56, height: 56, child: Icon(Icons.check)),
-                        onTap: () {},
+                        onTap: () {
+                          _saveForm();
+                        },
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
