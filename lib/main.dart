@@ -4,7 +4,7 @@ import 'dart:async';
 import 'home.dart';
 
 Future<void> main() async {
-  `WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
 
   final FirebaseApp app = await Firebase.initializeApp(
       name: 'db',
