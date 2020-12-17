@@ -25,15 +25,11 @@ dependencies:
     sdk: flutter
 
   local_auth:
-
-  firebase_database: 
-
+  firebase_database: ^4.4.0
+  firebase_core: ^0.5.0
   grouped_buttons:
-
   google_fonts:
-
   flutter_speed_dial:
-
   dropdown_formfield:
 
 

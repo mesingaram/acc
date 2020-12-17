@@ -126,21 +126,7 @@ class _AddCustState extends State<AddCust> {
                           fontWeight: FontWeight.bold, fontSize: 20.0),
                     ),
                   ),
-                  CheckboxGroup(
-                    margin: const EdgeInsets.fromLTRB(120, 10, 20, 10),
-                    labels: <String>[
-                      'Dinamalar',
-                      'Dinakaran',
-                      'Hindu Tamil',
-                      'Dinamalar MDU',
-                      'The Hindu',
-                      'Business Line'
-                    ],
-                    onChange: (bool isChecked, String label, int index) => print(
-                        "isChecked: $isChecked   label: $label  index: $index"),
-                    onSelected: (List<String> checked) =>
-                        print("checked: ${checked.toString()}"),
-                  ),
+                  PaperCheckBox(),
                   ClipOval(
                     child: Material(
                       color: Colors.blue, // button color
@@ -159,5 +145,30 @@ class _AddCustState extends State<AddCust> {
             ),
           ),
         ));
+  }
+}
+
+class PaperCheckBox extends StatelessWidget {
+  const PaperCheckBox({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return CheckboxGroup(
+      margin: const EdgeInsets.fromLTRB(120, 10, 20, 10),
+      labels: <String>[
+        'Dinamalar',
+        'Dinakaran',
+        'Hindu Tamil',
+        'Dinamalar MDU',
+        'The Hindu',
+        'Business Line'
+      ],
+      onChange: (bool isChecked, String label, int index) =>
+          print("isChecked: $isChecked   label: $label  index: $index"),
+      onSelected: (List<String> checked) =>
+          print("checked: ${checked.toString()}"),
+    );
   }
 }
