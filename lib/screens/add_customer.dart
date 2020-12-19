@@ -1,3 +1,5 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import '../home.dart';
 import 'package:grouped_buttons/grouped_buttons.dart';
@@ -9,7 +11,10 @@ class AddCust extends StatefulWidget {
 }
 
 class _AddCustState extends State<AddCust> {
+  final fb = FirebaseDatabase.instance;
   final _formkey = GlobalKey<FormState>();
+  final nameController = TextEditingController();
+  final phoneController = TextEditingController();
   String _myActivity;
   String _myActivityResult;
 
@@ -31,7 +36,15 @@ class _AddCustState extends State<AddCust> {
   }
 
   @override
+  void dispose() {
+    nameController.dispose();
+    phoneController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final ref = fb.reference();
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
@@ -52,6 +65,7 @@ class _AddCustState extends State<AddCust> {
                   new ListTile(
                     leading: const Icon(Icons.person),
                     title: new TextFormField(
+                      controller: nameController,
                       decoration: new InputDecoration(hintText: "Name"),
                       validator: (value) {
                         if (value.isEmpty) {
@@ -64,6 +78,7 @@ class _AddCustState extends State<AddCust> {
                   new ListTile(
                     leading: const Icon(Icons.phone),
                     title: new TextFormField(
+                      controller: phoneController,
                       keyboardType: TextInputType.number,
                       decoration: new InputDecoration(
                         hintText: "Phone",
@@ -76,57 +91,6 @@ class _AddCustState extends State<AddCust> {
                       },
                     ),
                   ),
-                  Container(
-                    padding: EdgeInsets.all(16),
-                    child: DropDownFormField(
-                      titleText: 'Line',
-                      hintText: 'Select Line',
-                      value: _myActivity,
-                      onSaved: (value) {
-                        setState(() {
-                          _myActivity = value;
-                        });
-                      },
-                      onChanged: (value) {
-                        setState(() {
-                          _myActivity = value;
-                        });
-                      },
-                      dataSource: [
-                        {
-                          "display": "Bus Stand",
-                          "value": "Bus Stand",
-                        },
-                        {
-                          "display": "Housing Board",
-                          "value": "Housing Board",
-                        },
-                        {
-                          "display": "Pudupatti",
-                          "value": "Pudupatti",
-                        },
-                        {
-                          "display": "Santhai",
-                          "value": "Santhai",
-                        },
-                        {
-                          "display": "Valayapatti",
-                          "value": "Valayapatti",
-                        },
-                      ],
-                      textField: 'display',
-                      valueField: 'value',
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(left: 14.0, top: 14.0),
-                    child: Text(
-                      "Select Papers:",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 20.0),
-                    ),
-                  ),
-                  PaperCheckBox(),
                   ClipOval(
                     child: Material(
                       color: Colors.blue, // button color
@@ -135,7 +99,8 @@ class _AddCustState extends State<AddCust> {
                         child: SizedBox(
                             width: 56, height: 56, child: Icon(Icons.check)),
                         onTap: () {
-                          _saveForm();
+                          ref.child("name").set(nameController.text);
+                          ref.child("phone no").set(phoneController.text);
                         },
                       ),
                     ),
